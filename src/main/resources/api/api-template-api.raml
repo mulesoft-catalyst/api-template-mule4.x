@@ -1,0 +1,16 @@
+#%RAML 1.0
+version: v1
+title: TEMPLATE API
+description: TEMPLATE API
+baseUri: http://0.0.0.0:8081/api
+ 
+/someresource:
+  /subresource1:
+    get:
+      queryParameters:
+        somequeryparam?:
+          type: string
+      responses:
+        200:
+          body:
+            application/json:

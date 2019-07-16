@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="get:\someresource\subresource1:api-impl" doc:id="18351123-d8d4-4ab4-9dc1-5d79a6f258ad" >
+		<json-logger:logger doc:name="Log Start" doc:id="efb7baf6-bd4a-42a8-891a-9e5ab0860cb3" config-ref="JSON_Logger_Config" message="Start"/>
+		<set-payload value="#['{&quot;key&quot;:&quot;input-date&quot;}']" doc:name="MOCK: Input Request" doc:id="a8b24275-c39a-4154-bff8-bc4c9aee9184" />
+		<json-logger:logger doc:name="Log Before Calling API/Backend" doc:id="7c16aee1-1b99-4bc6-aa47-feb467e32add" config-ref="JSON_Logger_Config" tracePoint="BEFORE_REQUEST" message="Before Calling API or Backend"/>
+		<set-payload value="#['{&quot;key&quot;:&quot;from backend&quot;}']" doc:name="MOCK: Backend" doc:id="6493f411-055c-4cbe-9963-d118a626aa5c" />
+		<json-logger:logger doc:name="Log After Calling API/Backend" doc:id="75bd1224-0d64-49ac-a704-410322e6a445" config-ref="JSON_Logger_Config" tracePoint="AFTER_REQUEST" message="After Calling API or Backend"/>
+		<json-logger:logger doc:name="Log Before Transform" doc:id="9f49f01e-a751-4b7f-8f06-e097dce67d78" config-ref="JSON_Logger_Config" tracePoint="BEFORE_TRANSFORM" message="Before Interpretting response"/>
+		<set-payload value="#['{&quot;key&quot;:&quot;some transformation&quot;}']" doc:name="MOCK: Transform" doc:id="904f3196-904e-43ec-963f-9d2df41d3749" />
+		<json-logger:logger doc:name="Log After Transform" doc:id="17afc3a3-76b1-4440-af0e-6533db89a665" config-ref="JSON_Logger_Config" tracePoint="AFTER_TRANSFORM" message="After Interpreting Response"/>
+		<json-logger:logger doc:name="Log End" doc:id="60394448-d828-4da9-b7cd-95a0bfc8b3da" config-ref="JSON_Logger_Config" tracePoint="END" message="End"/>
+	</flow>
+</mule>
